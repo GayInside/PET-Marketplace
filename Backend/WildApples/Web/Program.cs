@@ -1,3 +1,6 @@
+using Infrastructure.Configuration;
+using Infrastructure.DataBaseContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace Web
 {
@@ -13,6 +16,10 @@ namespace Web
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // Add layers services
+            builder.Services.AddInfrastructureServices();
+            // Services
 
             var app = builder.Build();
 
