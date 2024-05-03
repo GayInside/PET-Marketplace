@@ -38,7 +38,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Publication", b =>
@@ -69,7 +69,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Publications");
+                    b.ToTable("Publications", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Subcategory", b =>
@@ -94,7 +94,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Subcategories");
+                    b.ToTable("Subcategories", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -126,7 +126,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("PublicationSubcategory", b =>
@@ -141,7 +141,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("SubcategoriesId");
 
-                    b.ToTable("PublicationSubcategory");
+                    b.ToTable("PublicationSubcategory", (string)null);
                 });
 
             modelBuilder.Entity("PublicationUser", b =>
@@ -156,7 +156,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("UsersWhoLikedId");
 
-                    b.ToTable("PublicationUser");
+                    b.ToTable("PublicationUser", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Publication", b =>

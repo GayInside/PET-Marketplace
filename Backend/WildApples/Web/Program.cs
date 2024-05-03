@@ -1,6 +1,6 @@
 using Infrastructure.Configuration;
-using Infrastructure.DataBaseContext;
 using Microsoft.EntityFrameworkCore;
+using Web.Configuration;
 
 namespace Web
 {
@@ -10,10 +10,11 @@ namespace Web
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Configuration.SetUpInfrastructureConfiguration();
+
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -23,7 +24,6 @@ namespace Web
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -31,10 +31,7 @@ namespace Web
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();
