@@ -11,11 +11,6 @@ namespace Web
 
             builder.Configuration.SetUpInfrastructureConfiguration();
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
             // Add layers services
             builder.Services.AddWebServices();
             builder.Services.AddInfrastructureServices();
