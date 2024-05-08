@@ -7,6 +7,7 @@ namespace Infrastructure.Configuration
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
             services.AddDatabase();
+            services.AddRepositories();
 
             return services;
         }

@@ -1,3 +1,4 @@
+using Domain.Configuration;
 using Infrastructure.Configuration;
 using Web.Configuration;
 
@@ -13,6 +14,7 @@ namespace Web
 
             // Add layers services
             builder.Services.AddWebServices();
+            builder.Services.AddDomainServices();
             builder.Services.AddInfrastructureServices();
             // Services
 
@@ -25,6 +27,7 @@ namespace Web
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
 
