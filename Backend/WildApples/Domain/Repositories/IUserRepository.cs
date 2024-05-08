@@ -2,7 +2,7 @@
 
 namespace Domain.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : ICRUDRepository<User>
     {
         Task<User?> GetByUsername(string name);
     }
