@@ -13,5 +13,7 @@
         public virtual IEnumerable<Publication>? Publications { get; set; }
 
         public virtual IEnumerable<Publication>? Favorites { get; set; }
+
+        public virtual Role UserRole { get; set; } = null!;
     }
 }
