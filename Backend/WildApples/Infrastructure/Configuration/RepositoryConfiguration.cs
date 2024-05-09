@@ -9,6 +9,10 @@ namespace Infrastructure.Configuration
         public static IServiceCollection AddRepositories(this IServiceCollection services) 
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IPublicationRepository, PublicationRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<ISubcategoryRepository, SubcategoryRepository>();
 
             return services;
         }

@@ -22,11 +22,9 @@ public class UserRepository : IUserRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task Delete(long id)
+    public async Task Delete(User entity)
     {
-        var user = await _users.FirstAsync(x => x.Id == id);
-        _users.Remove(user);
-
+        _users.Remove(entity);
         await _context.SaveChangesAsync();
     }
 

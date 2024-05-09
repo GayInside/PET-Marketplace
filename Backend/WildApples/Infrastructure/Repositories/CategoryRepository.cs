@@ -22,11 +22,9 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(long id)
+        public async Task Delete(Category entity)
         {
-            var category = await _categories.FirstAsync(x => x.Id == id);
-            _categories.Remove(category);
-
+            _categories.Remove(entity);
             await _context.SaveChangesAsync();
         }
 

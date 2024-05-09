@@ -9,6 +9,11 @@ namespace Domain.Configuration
         {
             services.AddScoped<AccountService>();
             services.AddScoped<HashService>();
+            services.AddScoped<CategoryService>();
+            services.AddScoped<PublicationService>();
+            services.AddScoped<RoleService>();
+            services.AddScoped<UserService>();
+            services.AddScoped<SubcategoryService>();
 
             return services;
         }

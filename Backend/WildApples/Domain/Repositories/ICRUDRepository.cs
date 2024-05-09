@@ -11,6 +11,6 @@ namespace Domain.Repositories
 
         public Task Add(T entity);
 
-        public Task Delete(long id);
+        public Task Delete(T entity);
     }
 }
