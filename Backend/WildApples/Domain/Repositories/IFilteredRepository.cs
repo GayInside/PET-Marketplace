@@ -7,6 +7,6 @@ namespace Domain.Repositories
         where T1 : BaseEntity
         where T2 : BasePaginationParams       
     {
-        public Task<IEnumerable<T1>> GetItems(T2 filter);
+        public Task<List<T1>> GetItems(T2 filter);
     }
 }

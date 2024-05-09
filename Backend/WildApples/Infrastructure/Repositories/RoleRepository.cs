@@ -32,7 +32,7 @@ namespace Infrastructure.Repositories
         {
             var role = await _roles
                 .Include(x => x.UsersWithRole)
-                .FirstOrDefaultAsync();
+                .SingleOrDefaultAsync(x => x.Id == id);
 
             return role;
         }

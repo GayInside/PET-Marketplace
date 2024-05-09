@@ -6,6 +6,6 @@
 
         public virtual Category Category { get; set; } = null!;
 
-        public virtual IEnumerable<Publication>? Publications { get; set; }
+        public virtual List<Publication>? Publications { get; set; }
     }
 }

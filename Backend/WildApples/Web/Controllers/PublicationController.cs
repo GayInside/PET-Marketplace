@@ -1,10 +1,11 @@
-﻿using MediatR;
+﻿using Domain.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models.Commands.Publications;
 
 namespace Web.Controllers;
 
-public class PublicationController(IMediator mediator) : Controller
+public class PublicationController(IMediator mediator, IUserRepository userService) : Controller
 {
     [HttpGet("GetAllPublications")]
     public async Task<IActionResult> GetAllPublications(GetPublicationsWithPaginationCommand command)
@@ -17,6 +18,8 @@ public class PublicationController(IMediator mediator) : Controller
     [HttpGet("Test")]
     public async Task<IActionResult> Get()
     {
-        return Ok();
+        var user = await userService.Get(1);
+
+        return Ok(user);
     }
 }

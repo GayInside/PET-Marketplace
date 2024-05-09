@@ -8,6 +8,6 @@ namespace Domain.Models.UpdateDTOs
         public required long Id { get; init; }
         public bool IsDisabled { get; init; }  
         public string Name { get; set; } = RolesScheme.DEFAULT_USER_ROLE;
-        public IEnumerable<User>? UsersWithRole { get; set; }
+        public List<User>? UsersWithRole { get; set; }
     }
 }

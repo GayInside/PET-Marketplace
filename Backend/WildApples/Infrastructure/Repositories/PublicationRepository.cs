@@ -35,12 +35,12 @@ namespace Infrastructure.Repositories
                 .Include(x => x.Subcategories)
                 .Include(x => x.Owner)
                 .Include(x => x.UsersWhoLiked)
-                .FirstOrDefaultAsync();
+                .SingleOrDefaultAsync(x => x.Id == id);
 
             return publication;
         }
 
-        public async Task<IEnumerable<Publication>> GetItems(PublicationPaginationParams filter)
+        public async Task<List<Publication>> GetItems(PublicationPaginationParams filter)
         {
             var itemsQuery = _publications
                 .Include(x => x.Subcategories)
@@ -58,12 +58,7 @@ namespace Infrastructure.Repositories
 
             var items = await itemsQuery.ToListAsync();
 
-            foreach (var item in items)
-            {
-                Console.WriteLine(item.Title);
-            }
-
-            return items.AsEnumerable();
+            return items;
         }
 
         public async Task Update(Publication entity)

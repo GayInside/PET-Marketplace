@@ -10,8 +10,8 @@ namespace Domain.Models.UpdateDTOs
         public string PasswordHash { get; init; } = null!;
         public string Firstname { get; init; } = null!;
         public string Surname { get; init; } = null!;
-        public IEnumerable<Publication>? Publications { get; init; }
-        public IEnumerable<Publication>? Favorites { get; init; }
+        public List<Publication>? Publications { get; init; }
+        public List<Publication>? Favorites { get; init; }
         public Role UserRole { get; init; } = null!;
     }
 }

@@ -10,6 +10,6 @@ namespace Domain.Models.UpdateDTOs
 
         public string Title { get; init; } = null!;
 
-        public IEnumerable<Subcategory> Subcategories { get; init; } = null!;
+        public List<Subcategory> Subcategories { get; init; } = null!;
     }
 }

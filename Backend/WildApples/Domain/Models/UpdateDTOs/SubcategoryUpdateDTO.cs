@@ -8,6 +8,6 @@ namespace Domain.Models.UpdateDTOs
         public bool IsDisabled { get; init; }
         public string Title { get; init; } = null!;
         public Category Category { get; init; } = null!;
-        public IEnumerable<Publication>? Publications { get; init; }
+        public List<Publication>? Publications { get; init; }
     }
 }
