@@ -10,9 +10,9 @@
 
         public string Surname { get; set; } = null!;
 
-        public virtual IEnumerable<Publication>? Publications { get; set; }
+        public virtual List<Publication>? Publications { get; set; }
 
-        public virtual IEnumerable<Publication>? Favorites { get; set; }
+        public virtual List<Publication>? Favorites { get; set; }
 
         public virtual Role UserRole { get; set; } = null!;
     }

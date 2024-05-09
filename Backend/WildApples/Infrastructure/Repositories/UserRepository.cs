@@ -32,9 +32,9 @@ public class UserRepository : IUserRepository
     {
         var user = await _users
             .Include(x => x.Favorites)
-            .Include(x => x.Publications)
-            .Include(x => x.UserRole)
-            .FirstOrDefaultAsync();
+            //.Include(x => x.Publications)
+            //.Include(x => x.UserRole)
+            .SingleOrDefaultAsync(x => x.Id == id);
 
         return user;
     }
@@ -42,7 +42,7 @@ public class UserRepository : IUserRepository
     public async Task<User?> GetByUsername(string name)
     {
         var user = await _users.Include(x => x.UserRole)
-            .FirstOrDefaultAsync(x => x.Username == name);
+            .SingleOrDefaultAsync(x => x.Username == name);
 
         return user;
     }

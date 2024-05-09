@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Models.PaginationParams;
 using Domain.Repositories;
 using Infrastructure.DataBaseContext;
 using Microsoft.EntityFrameworkCore;
@@ -34,9 +35,30 @@ namespace Infrastructure.Repositories
                 .Include(x => x.Subcategories)
                 .Include(x => x.Owner)
                 .Include(x => x.UsersWhoLiked)
-                .FirstOrDefaultAsync();
+                .SingleOrDefaultAsync(x => x.Id == id);
 
             return publication;
+        }
+
+        public async Task<List<Publication>> GetItems(PublicationPaginationParams filter)
+        {
+            var itemsQuery = _publications
+                .Include(x => x.Subcategories)
+                .OrderBy(x => x.Id)
+                .Where(x => !x.IsDisabled);
+
+            if (filter.Subcategory is not null)
+            {
+                itemsQuery = itemsQuery.Where(x => x.Subcategories.First().Id == filter.Subcategory.Id);
+            }
+
+            itemsQuery = itemsQuery
+                .Skip((filter.PageNumber - 1) * filter.PageSize)
+                .Take(filter.PageSize);
+
+            var items = await itemsQuery.ToListAsync();
+
+            return items;
         }
 
         public async Task Update(Publication entity)

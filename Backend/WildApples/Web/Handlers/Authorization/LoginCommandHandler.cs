@@ -1,7 +1,7 @@
 ﻿using Domain.Models;
 using Domain.Services;
 using MediatR;
-using Web.Models.Authorization;
+using Web.Models.Commands.Authorization;
 
 namespace Web.Handlers.Authorization;
 

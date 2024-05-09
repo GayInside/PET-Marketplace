@@ -12,9 +12,9 @@ namespace Web
 
             builder.Configuration.SetUpInfrastructureConfiguration();
 
-            builder.Services.AddWebServices();
             builder.Services.AddDomainServices();
             builder.Services.AddInfrastructureServices();
+            builder.Services.AddWebServices();      
 
             var app = builder.Build();
 

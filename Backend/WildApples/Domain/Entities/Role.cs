@@ -6,6 +6,6 @@ namespace Domain.Entities
     {
         public string Name { get; set; } = RolesScheme.DEFAULT_USER_ROLE;
 
-        public virtual IEnumerable<User>? UsersWithRole { get; set; }
+        public virtual List<User>? UsersWithRole { get; set; }
     }
 }

@@ -8,10 +8,10 @@
 
         public virtual User Owner { get; set; } = null!;
 
-        public IEnumerable<string>? ImageUrls { get; set; }
+        public List<string>? ImageUrls { get; set; }
 
-        public virtual IEnumerable<Subcategory>? Subcategories { get; set; }
+        public virtual List<Subcategory> Subcategories { get; set; } = null!;
 
-        public virtual IEnumerable<User>? UsersWhoLiked { get; set; }
+        public virtual List<User>? UsersWhoLiked { get; set; }
     }
 }

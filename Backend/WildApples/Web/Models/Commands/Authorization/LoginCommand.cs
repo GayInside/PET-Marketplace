@@ -1,9 +1,9 @@
 ﻿using Domain.Models;
 using MediatR;
 
-namespace Web.Models.Authorization
+namespace Web.Models.Commands.Authorization
 {
-    public record LoginCommand 
+    public record LoginCommand
         : IRequest<AccountModel>
     {
         public string Username { get; init; } = null!;

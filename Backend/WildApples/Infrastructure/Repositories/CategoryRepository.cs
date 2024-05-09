@@ -32,7 +32,7 @@ namespace Infrastructure.Repositories
         {
             var category = await _categories
                 .Include(x => x.Subcategories)
-                .FirstOrDefaultAsync();
+                .SingleOrDefaultAsync(x => x.Id == id);
 
             return category;
         }

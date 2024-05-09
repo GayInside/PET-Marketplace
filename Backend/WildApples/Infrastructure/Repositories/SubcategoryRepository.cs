@@ -33,7 +33,7 @@ namespace Infrastructure.Repositories
             var subcategory = await _subcategories
                 .Include(x => x.Category)
                 .Include(x => x.Publications)
-                .FirstOrDefaultAsync();
+                .SingleOrDefaultAsync(x => x.Id == id);
 
             return subcategory;
         }
