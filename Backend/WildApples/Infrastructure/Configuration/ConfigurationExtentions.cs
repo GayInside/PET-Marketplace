@@ -1,6 +1,6 @@
-﻿using Infrastructure.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 
-namespace Web.Configuration
+namespace Infrastructure.Configuration
 {
     public static class ConfigurationExtentions
     {

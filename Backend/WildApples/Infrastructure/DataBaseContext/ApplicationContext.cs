@@ -9,6 +9,7 @@ namespace Infrastructure.DataBaseContext
         public DbSet<Publication> Publications { get; set; }
         public DbSet<Subcategory> Subcategories { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -40,6 +41,12 @@ namespace Infrastructure.DataBaseContext
                 .Entity<Publication>()
                 .HasMany(p => p.UsersWhoLiked)
                 .WithMany(u => u.Favorites);
+
+            builder
+                .Entity<Role>()
+                .HasMany(x => x.UsersWithRole)
+                .WithOne(x => x.UserRole)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
