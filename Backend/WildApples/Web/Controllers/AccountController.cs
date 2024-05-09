@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using Web.Models.Authorization;
+using Web.Models.Commands.Authorization;
 
 namespace Web.Controllers;
 
@@ -13,6 +13,7 @@ public class AccountController(IMediator _mediator)
     : Controller
 {
     [HttpPost]
+    [Route("Login")]
     public async Task<IActionResult> Login([FromBody]LoginCommand request)
     {
         try

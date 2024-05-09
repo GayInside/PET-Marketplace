@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Domain.Entities;
+using Domain.Models.PaginationParams;
 using Domain.Models.UpdateDTOs;
 using Domain.Repositories;
 
@@ -43,6 +44,13 @@ namespace Domain.Services
             publication.IsDisabled = updateDto.IsDisabled;
 
             await publicationRepository.Update(publication);
+        }
+
+        public async Task<IEnumerable<Publication>> GetItems(PublicationPaginationParams filter)
+        {
+            var items = await publicationRepository.GetItems(filter);
+
+            return items;
         }
     }
 }

@@ -10,7 +10,7 @@
 
         public IEnumerable<string>? ImageUrls { get; set; }
 
-        public virtual IEnumerable<Subcategory>? Subcategories { get; set; }
+        public virtual IEnumerable<Subcategory> Subcategories { get; set; } = null!;
 
         public virtual IEnumerable<User>? UsersWhoLiked { get; set; }
     }
