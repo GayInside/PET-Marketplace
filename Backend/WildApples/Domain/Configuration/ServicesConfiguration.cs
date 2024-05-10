@@ -14,6 +14,7 @@ namespace Domain.Configuration
             services.AddScoped<RoleService>();
             services.AddScoped<UserService>();
             services.AddScoped<SubcategoryService>();
+            services.AddScoped<ContextService>();
 
             return services;
         }

@@ -40,5 +40,10 @@ namespace Domain.Services
 
             await subcategoryRepository.Update(subcategory);
         }
+
+        public async Task<List<Subcategory>> GetAllById(IEnumerable<long> ids)
+        {
+            return await subcategoryRepository.GetAllById(ids);
+        }
     }
 }
