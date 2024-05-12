@@ -36,12 +36,9 @@ namespace Domain.Services
             var publication = await Get(updateDto.Id);
 
             publication.Subcategories = updateDto.Subcategories;
-            publication.UsersWhoLiked = updateDto.UsersWhoLiked;
             publication.Title = updateDto.Title;
             publication.Description = updateDto.Description;
-            publication.Owner = updateDto.Owner;
             publication.ImageUrls = updateDto.ImageUrls;
-            publication.IsDisabled = updateDto.IsDisabled;
 
             await publicationRepository.Update(publication);
         }

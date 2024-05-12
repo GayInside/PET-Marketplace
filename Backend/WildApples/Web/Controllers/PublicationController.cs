@@ -47,4 +47,20 @@ public class PublicationController(IMediator mediator) : Controller
             return BadRequest("Access denied");
         }
     }
+
+    [HttpPut("UpdatePublication")]
+    [Authorize]
+    public async Task<IActionResult> UpdatePublication(UpdatePublicationCommand command)
+    {
+        try
+        {
+            await mediator.Send(command);
+
+            return Ok();
+        }
+        catch (Exception)
+        {
+            return BadRequest("Access denied");
+        }
+    }
 }
