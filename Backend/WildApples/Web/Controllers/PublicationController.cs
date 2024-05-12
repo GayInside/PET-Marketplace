@@ -31,4 +31,20 @@ public class PublicationController(IMediator mediator) : Controller
 
         return Ok(result);
     }
+
+    [HttpDelete("DeletePublication")]
+    [Authorize]
+    public async Task<IActionResult> DeletePublication(DeletePublicationCommand command)
+    {
+        try
+        {
+            await mediator.Send(command);
+
+            return Ok();
+        }
+        catch (Exception) 
+        {
+            return BadRequest("Access denied");
+        }
+    }
 }
