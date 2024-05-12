@@ -12,7 +12,7 @@ namespace Web.Models.ViewModels.Publication
 
         public string? Description { get; init; }
 
-        public bool CanDelete { get; init; } = false;
+        public bool CanChange { get; init; } = false;
 
         public long? OwnerId { get; init; }
 

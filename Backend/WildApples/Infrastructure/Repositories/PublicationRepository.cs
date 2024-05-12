@@ -61,6 +61,15 @@ namespace Infrastructure.Repositories
             return items;
         }
 
+        public async Task<Publication?> GetWithUserWhoLiked(long id)
+        {
+            var publication = await _publications
+                .Include(x => x.UsersWhoLiked)
+                .SingleOrDefaultAsync(x => x.Id == id);
+
+            return publication;
+        }
+
         public async Task Update(Publication entity)
         {
             var publication = await _publications.FirstAsync(x => x.Id == entity.Id);

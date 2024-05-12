@@ -63,4 +63,13 @@ public class PublicationController(IMediator mediator) : Controller
             return BadRequest("Access denied");
         }
     }
+
+    [HttpPut("AddToFavoirites")]
+    [Authorize]
+    public async Task<IActionResult> AddPubblicationToFavorites(AddPublicationToFavoritesCommand command)
+    {
+        await mediator.Send(command);
+
+        return Ok();
+    }
 }

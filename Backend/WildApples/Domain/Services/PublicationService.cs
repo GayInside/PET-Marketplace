@@ -49,5 +49,19 @@ namespace Domain.Services
 
             return items;
         }
+
+        public async Task AddToFavorites(User user, long publicationId)
+        {
+            var publication = await publicationRepository.GetWithUserWhoLiked(publicationId);
+            Guard.Against.NotFound(publicationId, publication);
+
+            if (publication.UsersWhoLiked is null)
+            {
+                publication.UsersWhoLiked = new List<User>();
+            }
+
+            publication.UsersWhoLiked.Add(user);
+            await publicationRepository.Update(publication);
+        }
     }
 }
