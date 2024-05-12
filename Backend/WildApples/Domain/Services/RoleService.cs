@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Models.UpdateDTOs;
 using Domain.Repositories;
+using Domain.Utils;
 
 namespace Domain.Services
 {
@@ -38,6 +39,14 @@ namespace Domain.Services
             role.IsDisabled = updateDto.IsDisabled;
 
             await roleRepository.Update(role);
+        }
+
+        public async Task<Role> GetDefaultRole()
+        {
+            var role = await roleRepository.GetByName(RolesScheme.DEFAULT_USER_ROLE);
+            Guard.Against.NotFound(RolesScheme.DEFAULT_USER_ROLE, role);
+
+            return role;
         }
     }
 }
