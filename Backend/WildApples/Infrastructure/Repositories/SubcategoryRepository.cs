@@ -49,5 +49,18 @@ namespace Infrastructure.Repositories
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Subcategory>> GetAllById(IEnumerable<long> ids)
+        {
+            var subcategories = new List<Subcategory>();
+            foreach (var id in ids)
+            {
+                var subcategory = await _subcategories.SingleAsync(x => x.Id == id);
+
+                subcategories.Add(subcategory);
+            }
+
+            return subcategories;
+        }
     }
 }

@@ -32,8 +32,8 @@ public class UserRepository : IUserRepository
     {
         var user = await _users
             .Include(x => x.Favorites)
-            //.Include(x => x.Publications)
-            //.Include(x => x.UserRole)
+            .Include(x => x.Publications)
+            .Include(x => x.UserRole)
             .SingleOrDefaultAsync(x => x.Id == id);
 
         return user;

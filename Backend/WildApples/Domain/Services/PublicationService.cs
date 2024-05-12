@@ -36,12 +36,9 @@ namespace Domain.Services
             var publication = await Get(updateDto.Id);
 
             publication.Subcategories = updateDto.Subcategories;
-            publication.UsersWhoLiked = updateDto.UsersWhoLiked;
             publication.Title = updateDto.Title;
             publication.Description = updateDto.Description;
-            publication.Owner = updateDto.Owner;
             publication.ImageUrls = updateDto.ImageUrls;
-            publication.IsDisabled = updateDto.IsDisabled;
 
             await publicationRepository.Update(publication);
         }
@@ -51,6 +48,20 @@ namespace Domain.Services
             var items = await publicationRepository.GetItems(filter);
 
             return items;
+        }
+
+        public async Task AddToFavorites(User user, long publicationId)
+        {
+            var publication = await publicationRepository.GetWithUserWhoLiked(publicationId);
+            Guard.Against.NotFound(publicationId, publication);
+
+            if (publication.UsersWhoLiked is null)
+            {
+                publication.UsersWhoLiked = new List<User>();
+            }
+
+            publication.UsersWhoLiked.Add(user);
+            await publicationRepository.Update(publication);
         }
     }
 }

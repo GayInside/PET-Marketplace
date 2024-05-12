@@ -8,6 +8,7 @@ namespace Web.Configuration
         public static IServiceCollection AddWebServices(this IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpContextAccessor();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddMediatR(cfg =>

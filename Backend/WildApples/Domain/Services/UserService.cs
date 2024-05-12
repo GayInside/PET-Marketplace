@@ -44,5 +44,13 @@ namespace Domain.Services
 
             await userRepository.Update(user);
         }
+
+        public async Task<User> GetByUsername(string username)
+        {
+            var user = await userRepository.GetByUsername(username);
+            Guard.Against.NotFound(username, user);
+
+            return user;
+        }
     }
 }
