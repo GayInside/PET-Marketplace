@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 using System.Security.Claims;
 using Web.Models.Commands.Authorization;
 
@@ -35,6 +36,21 @@ public class AccountController(IMediator _mediator)
         catch (Exception ex)
         {
             return Unauthorized(ex.Message);
+        }
+    }
+
+    [HttpPost("Register")]
+    public async Task<IActionResult> Register(CreateAccountCommand command)
+    {
+        try
+        {
+            await _mediator.Send(command);
+
+            return Ok();
+        }
+        catch (Exception)
+        {
+            return BadRequest("Something wrong with your data");
         }
     }
 }

@@ -4,7 +4,7 @@ using Domain.Repositories;
 
 namespace Domain.Services
 {
-    public class AccountService(IUserRepository _repository, HashService hashService)
+    public class AccountService(IUserRepository _repository, HashService hashService, RoleService roleService)
     {
         public async Task<AccountModel> GetAccountModel(UserCredentials credentials)
         {
@@ -24,6 +24,26 @@ namespace Domain.Services
             };
 
             return accountModel;
+        }
+
+        public async Task CreateUser(CreateUserModel userModel)
+        {
+            var userExist = await _repository.GetByUsername(userModel.Username) is not null;
+            if (userExist)
+            {
+                throw new Exception("Such username is unavalible");
+            }
+
+            var user = new Domain.Entities.User()
+            {
+                Username = userModel.Username,
+                PasswordHash = hashService.GetHash(userModel.Password),
+                Firstname = userModel.Firstname,
+                Surname = userModel.Surname,
+                UserRole = await roleService.GetDefaultRole()
+            };
+
+            await _repository.Add(user);
         }
     }
 }
