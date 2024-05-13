@@ -17,7 +17,7 @@ public class PublicationController(IMediator mediator) : Controller
 
     [HttpPost("CreatePublication")]
     [Authorize]
-    public async Task<IActionResult> CreatePublication(CreatePublicationCommand command)
+    public async Task<IActionResult> CreatePublication([FromBody]CreatePublicationCommand command)
     {
         var result = await mediator.Send(command);
 
@@ -50,7 +50,7 @@ public class PublicationController(IMediator mediator) : Controller
 
     [HttpPut("UpdatePublication")]
     [Authorize]
-    public async Task<IActionResult> UpdatePublication(UpdatePublicationCommand command)
+    public async Task<IActionResult> UpdatePublication([FromBody]UpdatePublicationCommand command)
     {
         try
         {
@@ -66,7 +66,7 @@ public class PublicationController(IMediator mediator) : Controller
 
     [HttpPut("AddToFavoirites")]
     [Authorize]
-    public async Task<IActionResult> AddPubblicationToFavorites(AddPublicationToFavoritesCommand command)
+    public async Task<IActionResult> AddPubblicationToFavorites([FromBody]AddPublicationToFavoritesCommand command)
     {
         await mediator.Send(command);
 
