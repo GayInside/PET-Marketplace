@@ -1,4 +1,5 @@
 version: "3.9"
+name: wildapples-dev
 
 services:
   postgres:
@@ -10,6 +11,8 @@ services:
       - "5433:5432"
     volumes:
       - data:/var/lib/postgresql/data
+    networks:
+      - backend
 
   pg-admin:
     image: dpage/pgadmin4:6
@@ -17,9 +20,10 @@ services:
       - PGADMIN_DEFAULT_EMAIL=admin@email.com
       - PGADMIN_DEFAULT_PASSWORD=admin
       - PGADMIN_LISTEN_PORT=5050
-
     ports:
       - "5050:5050"
+    networks:
+      - backend
 
   minio:
     restart: always
@@ -29,7 +33,7 @@ services:
       - "9010:9000"
       - "9011:9001"
     networks:
-      - minio-network
+      - backend
     volumes:
       - 'minio_data:/data'
     environment:
@@ -39,8 +43,28 @@ services:
       - MINIO_SECRET_KEY=minio
       - MINIO_DEFAULT_BUCKETS=publications
 
+  api:
+    image: wa-api
+    ports:
+      - 5255:5254
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  api-chat:
+    image: wa-chat
+    restart: always
+    ports:
+      - 5073:5072
+    depends_on:
+      - api
+      - postgres
+    networks:
+      - backend
+
 networks:
-  minio-network:
+  backend:
 
 volumes:
   data:

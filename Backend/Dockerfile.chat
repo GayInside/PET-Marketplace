@@ -1,0 +1,21 @@
+# Установка базового образа, содержащего .NET SDK
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /
+COPY *.sln .
+COPY WildApples/Chat.Web/*.csproj ./WildApples/Chat.Web/
+COPY WildApples/Chat.Domain/*.csproj ./WildApples/Chat.Domain/
+COPY WildApples/Chat.Infrastructure/*.csproj ./WildApples/Chat.Infrastructure/
+RUN dotnet restore "./WildApples/Chat.Web/Chat.Web.csproj"
+COPY . .
+RUN dotnet build "./WildApples/Chat.Web/Chat.Web.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "./WildApples/Chat.Web/Chat.Web.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Chat.Web.dll"]
