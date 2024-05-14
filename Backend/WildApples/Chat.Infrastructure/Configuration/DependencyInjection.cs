@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.Configuration
+namespace Chat.Infrastructure.Configuration
 {
     public static class DependencyInjection
     {
@@ -8,7 +8,6 @@ namespace Infrastructure.Configuration
         {
             services.AddDatabase();
             services.AddRepositories();
-            services.AddAPIs();
 
             return services;
         }

@@ -7,6 +7,18 @@ namespace Web.Configuration
     {
         public static IServiceCollection AddWebServices(this IServiceCollection services)
         {
+            services.AddCors(option =>
+            {
+                option.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.SetIsOriginAllowed(url => true);
+                    policy.AllowCredentials();
+                });
+            });
+            services.AddSignalR();
+            services.AddHttpClient();
             services.AddControllers();
             services.AddHttpContextAccessor();
             services.AddEndpointsApiExplorer();
