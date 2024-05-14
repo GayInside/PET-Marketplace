@@ -22,7 +22,6 @@ namespace Web.Handlers.Publication
                 Description = publication.Description,
                 OwnerId = publication.Owner.Id,
                 SubcategoryTitles = publication.Subcategories.Select(x => x.Title),
-                Photos = null,//Add minio
                 CountOfLikes = publication.UsersWhoLiked?.Count() ?? 0,
                 CanChange = currentUserUsername.Equals(publication.Owner.Username) ||
                 currentUserRole.Equals(RolesScheme.ADMIN)

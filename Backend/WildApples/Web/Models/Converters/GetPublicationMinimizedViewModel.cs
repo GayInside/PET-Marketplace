@@ -10,8 +10,7 @@ namespace Web.Models.Converters
             return new()
             { 
                 Id = publication.Id,
-                Title = publication.Title,
-                ImageUrl = publication.ImageUrls?.FirstOrDefault() ?? null,
+                Title = publication.Title
             };
         }
     }

@@ -80,7 +80,6 @@ namespace Infrastructure.Repositories
             publication.Owner = entity.Owner;
             publication.UsersWhoLiked = entity.UsersWhoLiked;
             publication.Description = entity.Description;
-            publication.ImageUrls = entity.ImageUrls;
 
             await _context.SaveChangesAsync();
         }

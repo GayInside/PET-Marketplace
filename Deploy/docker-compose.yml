@@ -21,5 +21,27 @@ services:
     ports:
       - "5050:5050"
 
+  minio:
+    restart: always
+    image: docker.io/bitnami/minio
+    command: server --console-address ":9001" /data
+    ports:
+      - "9010:9000"
+      - "9011:9001"
+    networks:
+      - minio-network
+    volumes:
+      - 'minio_data:/data'
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=minio
+      - MINIO_ACCESS_KEY=minio
+      - MINIO_SECRET_KEY=minio
+      - MINIO_DEFAULT_BUCKETS=publications
+
+networks:
+  minio-network:
+
 volumes:
   data:
+  minio_data:

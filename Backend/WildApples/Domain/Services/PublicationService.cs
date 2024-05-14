@@ -38,7 +38,6 @@ namespace Domain.Services
             publication.Subcategories = updateDto.Subcategories;
             publication.Title = updateDto.Title;
             publication.Description = updateDto.Description;
-            publication.ImageUrls = updateDto.ImageUrls;
 
             await publicationRepository.Update(publication);
         }
