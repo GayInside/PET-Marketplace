@@ -32,6 +32,14 @@ namespace Chat.Infrastructure.Repositories
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<User?> GetByMainId(long id)
+        {
+            return await _users
+                .Include(x => x.Chats)
+                .Include(x => x.Messages)
+                .SingleOrDefaultAsync(x => x.MainId == id);
+        }
+
         public async Task<User?> GetByUsername(string username)
         {
             return await _users

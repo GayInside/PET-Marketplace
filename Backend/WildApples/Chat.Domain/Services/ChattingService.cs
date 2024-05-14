@@ -47,9 +47,9 @@ namespace Chat.Domain.Services
 
         public async Task<long> CreateChat(long firstId, long secondId)
         {
-            var userFirst = await userRepository.Get(firstId);
+            var userFirst = await userRepository.GetByMainId(firstId);
             Guard.Against.NotFound(firstId, userFirst);
-            var userSecond = await userRepository.Get(secondId);
+            var userSecond = await userRepository.GetByMainId(secondId);
             Guard.Against.NotFound(secondId, userSecond);
 
             var chat = new Domain.Entities.Chat()

@@ -9,5 +9,7 @@ namespace Chat.Domain.Repositories
         public Task<long> Add(User user);
 
         public Task<User?> Get(long id);
+
+        public Task<User?> GetByMainId(long id);
     }
 }
