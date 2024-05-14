@@ -5,10 +5,12 @@ using Web.Models.Commands.Publications;
 
 namespace Web.Controllers;
 
+[ApiController]
+[Route("api/[controller]")]
 public class PublicationController(IMediator mediator) : Controller
 {
     [HttpGet("GetAllPublications")]
-    public async Task<IActionResult> GetAllPublications(GetPublicationsWithPaginationCommand command)
+    public async Task<IActionResult> GetAllPublications([FromQuery]GetPublicationsWithPaginationCommand command)
     {
         var result = await mediator.Send(command);
 
@@ -25,7 +27,7 @@ public class PublicationController(IMediator mediator) : Controller
     }
 
     [HttpGet("GetPublication")]
-    public async Task<IActionResult> GetPublication(GetPublicationCommand command)
+    public async Task<IActionResult> GetPublication([FromQuery] GetPublicationCommand command)
     {
         var result = await mediator.Send(command);
 
@@ -34,7 +36,7 @@ public class PublicationController(IMediator mediator) : Controller
 
     [HttpDelete("DeletePublication")]
     [Authorize]
-    public async Task<IActionResult> DeletePublication(DeletePublicationCommand command)
+    public async Task<IActionResult> DeletePublication([FromBody]DeletePublicationCommand command)
     {
         try
         {

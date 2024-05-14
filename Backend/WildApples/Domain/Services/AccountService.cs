@@ -26,7 +26,7 @@ namespace Domain.Services
             return accountModel;
         }
 
-        public async Task CreateUser(CreateUserModel userModel)
+        public async Task<long> CreateUser(CreateUserModel userModel)
         {
             var userExist = await _repository.GetByUsername(userModel.Username) is not null;
             if (userExist)
@@ -44,6 +44,8 @@ namespace Domain.Services
             };
 
             await _repository.Add(user);
+
+            return user.Id;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Infrastructure.Configuration
         {
             services.AddDatabase();
             services.AddRepositories();
+            services.AddAPIs();
 
             return services;
         }

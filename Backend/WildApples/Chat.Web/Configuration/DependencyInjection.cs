@@ -4,6 +4,10 @@
     {
         public static IServiceCollection AddWebServices(this IServiceCollection services)
         {
+            services.AddControllers();
+            services.AddHttpContextAccessor();
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
             services.AddCors(option =>
             {
                 option.AddDefaultPolicy(policy =>

@@ -19,10 +19,16 @@ namespace Chat.Web
 
             var app = builder.Build();
 
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            app.UseHttpsRedirection();
+            app.MapControllers();
             app.UseCors();
-
             app.UseMiddleware<AuthMiddleware>();
-
             app.Run();
         }
     }

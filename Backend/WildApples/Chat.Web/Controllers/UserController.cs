@@ -9,7 +9,8 @@ namespace Chat.Web.Controllers
     [Route("/chat/api/[controller]")]
     public class UserController(UserService userService) : Controller
     {
-        [HttpPost("AddUser")]
+        [HttpPost]
+        [Route("AddUser")]
         public async Task<IActionResult> AddUser([FromBody] AddUserModel userModel)
         {
             var user = new User()

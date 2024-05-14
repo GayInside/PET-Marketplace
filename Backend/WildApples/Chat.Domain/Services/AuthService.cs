@@ -2,7 +2,7 @@
 {
     public class AuthService
     {
-        public const string AUTH_HEADER_NAME = "authsmile";
+        public const string AUTH_HEADER_NAME = "ChatAuth";
 
         public bool ValidateToken(string? authToken)
         {

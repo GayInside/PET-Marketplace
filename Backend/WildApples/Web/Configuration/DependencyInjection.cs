@@ -18,6 +18,7 @@ namespace Web.Configuration
                 });
             });
             services.AddSignalR();
+            services.AddHttpClient();
             services.AddControllers();
             services.AddHttpContextAccessor();
             services.AddEndpointsApiExplorer();
