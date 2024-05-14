@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using Domain.Services;
+﻿using Domain.Services;
 using MediatR;
 using Web.Models.Commands.Publications;
 
@@ -16,13 +15,12 @@ namespace Web.Handlers.Publication
             var user = await userService.GetByUsername(username);
             var subcategories = await subcategoryService.GetAllById(request.SubcategoriesId);
 
-            //TODO Add minio integration
             var publication = new Domain.Entities.Publication()
             {
                 Title = request.Title,
                 Owner = user,
                 Subcategories = subcategories,
-                Description = request.Description
+                Description = request.Description,
             };
 
             var id = await publicationService.Add(publication);

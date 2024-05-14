@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-
-namespace Web.Models.ViewModels.Publication
+﻿namespace Web.Models.ViewModels.Publication
 {
     public record PublicationMaximizedViewModel
     {
@@ -15,8 +13,6 @@ namespace Web.Models.ViewModels.Publication
         public bool CanChange { get; init; } = false;
 
         public long? OwnerId { get; init; }
-
-        public IEnumerable<IFormFile>? Photos { get; init; }
 
         public long CountOfLikes { get; init; } = 0;
     }

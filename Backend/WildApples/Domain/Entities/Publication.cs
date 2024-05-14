@@ -8,8 +8,6 @@
 
         public virtual User Owner { get; set; } = null!;
 
-        public List<string>? ImageUrls { get; set; }
-
         public virtual List<Subcategory> Subcategories { get; set; } = null!;
 
         public virtual List<User>? UsersWhoLiked { get; set; }

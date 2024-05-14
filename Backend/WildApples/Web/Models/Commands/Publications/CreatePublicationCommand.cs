@@ -10,7 +10,5 @@ namespace Web.Models.Commands.Publications
         public string? Description { get; init; }
 
         public IEnumerable<long> SubcategoriesId { get; init; } = null!;
-
-        public IEnumerable<IFormFile>? Photos { get; init; }
     }
 }

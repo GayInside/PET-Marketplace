@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+
+  pg-admin:
+    image: dpage/pgadmin4:6
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@email.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=5050
+
+    ports:
+      - "5050:5050"
+
+  minio:
+    restart: always
+    image: docker.io/bitnami/minio
+    command: server --console-address ":9001" /data
+    ports:
+      - "9010:9000"
+      - "9011:9001"
+    networks:
+      - minio-network
+    volumes:
+      - 'minio_data:/data'
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=minio
+      - MINIO_ACCESS_KEY=minio
+      - MINIO_SECRET_KEY=minio
+      - MINIO_DEFAULT_BUCKETS=publications
+
+networks:
+  minio-network:
+
+volumes:
+  data:
+  minio_data:
