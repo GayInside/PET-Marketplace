@@ -12,8 +12,8 @@ namespace Web.Handlers.Publication
         public async Task<PublicationMaximizedViewModel> Handle(GetPublicationCommand request, CancellationToken cancellationToken)
         {
             var publication = await publicationService.Get(request.Id);
-            var currentUserUsername = contextService.GetUsername();
-            var currentUserRole = contextService.GetUserRole();
+            var currentUserUsername = contextService.GetUsername() ?? string.Empty;
+            var currentUserRole = contextService.GetUserRole() ?? string.Empty;
 
             var viewModel = new PublicationMaximizedViewModel()
             {
