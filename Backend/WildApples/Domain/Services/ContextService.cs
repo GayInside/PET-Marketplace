@@ -8,10 +8,10 @@ namespace Domain.Services
         public HttpContext GetHttpContext() =>
             httpContextAccessor.HttpContext;
 
-        public string GetUsername() =>
-            httpContextAccessor.HttpContext.User.Claims.First(x => x.Type.Equals(ClaimTypes.Name)).Value;
+        public string? GetUsername() =>
+            httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Name))?.Value ?? null;
 
-        public string GetUserRole() =>
-            httpContextAccessor.HttpContext.User.Claims.First(x => x.Type.Equals(ClaimTypes.Role)).Value;
+        public string? GetUserRole() =>
+            httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Role))?.Value ?? null;
     }
 }
