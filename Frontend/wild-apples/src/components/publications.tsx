@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import PublicationApi from "../services/publication-api";
 import IPublicationPagination from "../models/IPublicationPagination";
 import PublicationMinimized from "./publication-minimized";
+import "./publications.css";
 
 const Publications = () => {
     const {pageNumber} = useParams();
@@ -23,12 +24,15 @@ const Publications = () => {
 
     return (
       <div className="Publications">
-        <Link to="add-publication">Создать публикацию</Link>
-        {publications?.items.map(item => (
-				<PublicationMinimized publication={item}></PublicationMinimized>	
-				))}
-
-      </div>
+  {publications?.items.map(item => (
+    <div className="PublicationMinimized">
+      <a href={`/publications/${item.id}`}>
+        <div className="publication-id">{item.id}</div>
+        <div className="publication-title">{item.title}</div>
+      </a>
+    </div>
+  ))}
+</div>
     );
   }
   

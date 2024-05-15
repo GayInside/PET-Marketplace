@@ -39,7 +39,7 @@ public class AccountController(IMediator _mediator)
     }
 
     [HttpPost("Register")]
-    public async Task<IActionResult> Register(CreateAccountCommand command)
+    public async Task<IActionResult> Register([FromBody]CreateAccountCommand command)
     {
         try
         {

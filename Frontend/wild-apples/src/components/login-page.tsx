@@ -3,6 +3,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import IUserCredentials from '../models/IUserCredentials';
 import AccountApi from '../services/account-api';
+import { Link } from 'react-router-dom';
+import "./login-page.css";
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -29,6 +31,7 @@ const LoginPage = () => {
     const authToken = Cookies.get('.AspNetCore.Cookies');
     if (authToken) {
       // Если токен есть, перенаправляем пользователя на защищенную страницу
+      console.log(authToken);
       window.location.href = '/publications/1';
     }
   };
@@ -38,9 +41,9 @@ const LoginPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="login-page">
       <h1>Страница авторизации</h1>
-      <form onSubmit={handleLogin}>
+      <form className="login-form" onSubmit={handleLogin}>
         <label>
           Имя пользователя:
           <input
@@ -60,6 +63,9 @@ const LoginPage = () => {
         </label>
         <br />
         <button type="submit">Войти</button>
+        <Link to="/registration" className="registration-link">
+          Регистрация
+        </Link>
       </form>
     </div>
   );
