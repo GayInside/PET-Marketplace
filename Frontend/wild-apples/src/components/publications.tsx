@@ -26,7 +26,7 @@ const Publications = () => {
       <div className="Publications">
   {publications?.items.map(item => (
     <div className="PublicationMinimized">
-      <a href={`/publications/${item.id}`}>
+      <a href={`/publications/publication/${item.id}`}>
         <div className="publication-id">{item.id}</div>
         <div className="publication-title">{item.title}</div>
       </a>
